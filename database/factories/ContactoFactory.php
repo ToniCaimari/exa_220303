@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Contacto;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class ContactoFactory extends Factory
 {
