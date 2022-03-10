@@ -7,14 +7,16 @@ use Illuminate\Http\Request;
 
 class ContactoController extends Controller
 {
-    /**
+    /*
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        $contacto=Contacto::all();
+        return $contacto;
+
     }
 
     /**
@@ -25,7 +27,13 @@ class ContactoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $contacto= new Contacto();
+        $contacto->nombre=$request->nombre;
+        $contacto->tel=$request->tel;
+        $contacto->num_libros=$request->num_libros;
+        $contacto->save();
+        return $contacto;
     }
 
     /**
@@ -36,7 +44,8 @@ class ContactoController extends Controller
      */
     public function show(Contacto $contacto)
     {
-        //
+        $contacto=Contacto::where('nombre',$contacto)->first();
+        return $contacto;
     }
 
     /**
@@ -48,7 +57,12 @@ class ContactoController extends Controller
      */
     public function update(Request $request, Contacto $contacto)
     {
-        //
+        $contacto=Contacto::where('nombre','=',$contacto);
+        $contacto->nombre=$request->nombre;
+        $contacto->tel=$request->tel;
+        $contacto->num_libros=$request->num_libros;
+        $contacto->save();
+        return  $contacto;
     }
 
     /**
@@ -59,6 +73,7 @@ class ContactoController extends Controller
      */
     public function destroy(Contacto $contacto)
     {
-        //
+        $contacto=Contacto::where('nombre','=',$contacto);
+        $contacto->delete();
     }
 }
